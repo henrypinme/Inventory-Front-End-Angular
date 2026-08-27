@@ -1,0 +1,38 @@
+<form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Item Name</mat-label>
+        <input matInput [formControl]="form.controls.itemName" />
+        <mat-error>{{getErrorMessagesForItemName()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Item Price</mat-label>
+        <input matInput [formControl]="form.controls.itemPrice" />
+        <!-- <mat-error>{{getErrorMessagesForItemName()}}</mat-error> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Creation Date</mat-label>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <input matInput [formControl]="form.controls.creationDate" [matDatepicker]="picker"/>
+    </mat-form-field>
+    <app-input-img title="Inventory's Poster" [imageURL]="model?.poster" (selectedFile)="handleFileSelection($event)"></app-input-img>
+
+    <h4>Select the Categories</h4>
+
+    <app-multiple-selector [selected]="selectedCategories" [nonSelected]="nonSelectedCategories"></app-multiple-selector>
+
+    <!-- <h4>Select the Suppliers</h4>
+
+    <app-multiple-selector [selected]="selectedSuppliers" [nonSelected]="nonSelectedSuppliers"></app-multiple-selector> -->
+
+    <h4>Select the Suppliers</h4>
+
+    <!-- <app-multiple-selector [selected]="selectedSuppliers" [nonSelected]="nonSelectedSuppliers"></app-multiple-selector> -->
+
+    <app-suppliers-autocomplete [suppliersSelected]="selectedSuppliers"></app-suppliers-autocomplete>
+
+    <div class="buttons-container">
+        <button [disabled]="form.invalid" mat-flat-button type="submit">Save Changes</button>
+        <a routerLink="/" mat-stroked-button>Cancel</a>
+    </div>
+</form>

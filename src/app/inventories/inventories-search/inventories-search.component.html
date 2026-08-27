@@ -1,0 +1,37 @@
+<h2>Serch for Inventory Items</h2>
+
+<form [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Item Name</mat-label>
+        <input matInput [formControl]="form.controls.itemName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select [formControl]="form.controls.categoryId">
+            <mat-option [value]="0">--Select a Category--</mat-option>
+            @for (category of categories; track $index){
+                <mat-option [value]="category.id">{{category.name}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <div>
+        <mat-checkbox [formControl]="form.controls.outOfStock">Out of Stock</mat-checkbox>
+    </div>
+    
+    <div>
+        <mat-checkbox [formControl]="form.controls.inStock">In Stock</mat-checkbox>
+    </div>
+
+    <div class="container-clear">
+        <button mat-flat-button (click)="clear()" class="warn">Clear</button>
+    </div>
+</form>
+
+<app-inventory-list [inventories]="inventories">
+</app-inventory-list>
+<mat-paginator showFirstLastButtons [length]="totalRecordsCount"
+[pageIndex]="pagination.page - 1" [pageSize]="pagination.recordPerPage"
+[pageSizeOptions]="[5, 10, 50]" class="mat-elevation-z8" (page)="handlePagination($event)">
+</mat-paginator>

@@ -1,0 +1,7 @@
+<h2>List of Items on stock</h2>
+
+<app-inventory-list [inventories]="inStock" (deleted)="handleDelete()"></app-inventory-list>
+
+<h2>List of Items out of stock</h2>
+
+<app-inventory-list [inventories]="outOfStock" (deleted)="handleDelete()"></app-inventory-list>

@@ -1,0 +1,15 @@
+import { CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { InventoryListComponent } from "./inventories/inventory-list/inventory-list.component";
+import { MenuComponent } from "./shared/components/menu/menu.component";
+
+@Component({
+  selector: 'app-root',
+  imports: [MenuComponent, RouterOutlet],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+
+}

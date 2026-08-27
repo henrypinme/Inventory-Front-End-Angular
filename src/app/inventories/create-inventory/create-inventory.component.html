@@ -1,0 +1,13 @@
+<h2>Create Item</h2>
+
+@if(nonSelectedCategories.length > 0){
+    <app-inventories-form 
+        [selectedCategories]="selectedCategories" [nonSelectedCategories]="nonSelectedCategories"
+        [selectedSuppliers]="selectedSuppliers" 
+        (postForm)="saveChanges($event)">
+    </app-inventories-form>
+}
+@else {
+    <app-loading></app-loading>
+}
+

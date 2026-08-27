@@ -1,0 +1,11 @@
+<h2>Edit Item</h2>
+
+@if(model){
+    <app-inventories-form 
+    [nonSelectedCategories]="nonSelectedCategories" [selectedCategories]="selectedCategories"
+    [selectedSuppliers]="selectedSuppliers" 
+    [model]="model" (postForm)="saveChanges($event)"></app-inventories-form>
+} @else {
+    <app-loading></app-loading>
+}
+

@@ -1,0 +1,45 @@
+@if (inventory){
+    <div>
+        <h2>{{inventory.itemName}} ({{inventory.creationDate.getFullYear()}})</h2>
+        <mat-chip-listbox>
+            @for (category of inventory.categories; track $index){
+                <mat-chip [routerLink]="['/inventories/search']" [queryParams]="{categoryId: category.id}">{{category.name}}</mat-chip>
+            }
+        </mat-chip-listbox> | {{inventory.creationDate.toDateString()}} | Priority: 0.0 | Your vote: 0.0
+
+        <div style="display: flex;">
+            <span style="display: inline-block; margin-right: 1rem;">
+                <img [src]="inventory.poster" width="220" height="320"/>
+
+            </span>
+
+        </div>
+
+        @if(inventory.categories){
+            <div style="margin-top: 1rem;">
+                <h3>Suppliers</h3>
+                <div>
+                    @for (supplier of inventory.suppliers; track $index){
+                        <div>
+                            <span style="display: inline-block; width: 200px; margin-left: 1 rem;">
+                                {{supplier.name}}
+
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        @if(inventory.suppliers){
+            <div>
+                <h3>Suppliers</h3>
+                <app-map [readOnlyMOde]="true" [initialCoordinates]="coordinates"></app-map>
+            </div>
+        }
+        
+    </div>
+
+} @else {
+    <app-loading></app-loading>
+}

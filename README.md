@@ -1,0 +1,2 @@
+# angular-inventories
+Initial Commit

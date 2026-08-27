@@ -1,0 +1,47 @@
+<mat-toolbar class="fixed-top">
+    <span>
+        <a mat-button routerLink="">
+            <mat-icon>inventory</mat-icon>Angular inventory
+        </a>
+    </span>
+
+    <div>
+        <a mat-button routerLink="inventories/search">Search for Items</a>
+    </div>
+
+    <app-authorized role="admin">
+        <ng-container authorized>
+            <div>
+                <a mat-button routerLink="categories">Categories</a>
+            </div>
+
+            <div>
+                <a mat-button routerLink="suppliers">Suppliers</a>
+            </div>
+
+            <div>
+                <a mat-button routerLink="inventories/create">Create Items</a>
+            </div>
+
+            <div>
+                <a mat-button routerLink="users">Users</a>
+            </div>
+
+        </ng-container>
+    </app-authorized>
+
+    <div class="space"></div>
+
+    <app-authorized style="display: inline;">
+        <ng-container authorized>
+            <span class="greetting">Hello, {{securityServie.getJWTClaim("email")}}</span>
+            <a mat-button (click)="securityServie.logout()">Logout</a>
+        </ng-container>
+
+        <ng-container notAuthorized>
+            <a mat-button routerLink="login">Login</a>
+            <a mat-button routerLink="register">Register</a>
+        </ng-container>
+    </app-authorized>
+
+</mat-toolbar>
